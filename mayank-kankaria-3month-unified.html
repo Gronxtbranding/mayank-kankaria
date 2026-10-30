@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mayank Kankaria · 3-Month LinkedIn Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;0,700;1,300&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#101828;--paper:#FAF8F3;--gold:#B8892F;--teal:#1F6F63;
+  --brick:#A85239;--paper-dim:#F0ECE1;--card:#FFFFFF;
+  --line:#E4DFD2;--line-dark:#2A3245;--rail:220px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+
+/* ── SHELL ── */
+.shell{display:grid;grid-template-columns:var(--rail) 1fr;min-height:100vh}
+
+/* ── RAIL ── */
+.rail{position:sticky;top:0;height:100vh;background:#111827;display:flex;flex-direction:column;overflow-y:auto;z-index:10}
+.rail-logo{padding:24px 20px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
+.rail-logo img{height:28px;filter:brightness(0) invert(1)}
+.rail-client{padding:12px 20px 20px;border-bottom:1px solid rgba(255,255,255,.08)}
+.rail-client .name{font-family:'Fraunces',serif;font-size:15px;color:#fff;font-weight:500;line-height:1.3}
+.rail-client .sub{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px}
+.rail-nav{flex:1;padding:12px 0}
+.rail-nav a{display:flex;align-items:center;gap:10px;padding:8px 20px;font-size:12.5px;color:rgba(255,255,255,.55);text-decoration:none;transition:all .2s;border-left:2px solid transparent;line-height:1.3}
+.rail-nav a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.rail-nav a.active{color:#fff;border-left-color:var(--gold);background:rgba(184,137,47,.12)}
+.rail-badge{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:var(--gold);color:#111;border-radius:3px;font-size:9px;font-weight:700;flex-shrink:0}
+
+/* ── MAIN ── */
+.main{min-width:0}
+
+/* ── HERO ── */
+.hero{background:#111827;background-image:radial-gradient(ellipse at 70% 50%,rgba(31,111,99,.35) 0%,transparent 65%);padding:52px 48px 44px;color:#fff}
+.hero-eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.hero-name{font-family:'Fraunces',serif;font-size:38px;font-weight:300;line-height:1.1;margin-bottom:4px}
+.hero-period{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:32px}
+.kpi-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,.1);border-radius:10px;overflow:hidden}
+.kpi{background:rgba(255,255,255,.06);padding:16px 18px;position:relative}
+.kpi .val{font-family:'Fraunces',serif;font-size:26px;font-weight:500;color:#fff;line-height:1}
+.kpi .lbl{font-size:10.5px;color:rgba(255,255,255,.5);margin-top:5px;line-height:1.3}
+.kpi .tip-btn{position:absolute;top:8px;right:8px;width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:8px;cursor:pointer;color:#fff;border:none;padding:0;line-height:1}
+.kpi .tip{display:none;position:absolute;bottom:calc(100%+6px);left:50%;transform:translateX(-50%);background:#1e293b;color:#e2e8f0;font-size:11px;padding:7px 10px;border-radius:6px;width:180px;z-index:50;line-height:1.4;pointer-events:none;white-space:normal}
+.kpi:hover .tip{display:block}
+
+/* ── SECTIONS ── */
+section{padding:44px 48px;border-bottom:1px solid var(--line)}
+section:last-child{border-bottom:none}
+.sec-label{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.sec-title{font-family:'Fraunces',serif;font-size:26px;font-weight:300;color:var(--ink);margin-bottom:6px}
+.sec-sub{font-size:13px;color:#6b7280;margin-bottom:28px}
+
+/* ── CONTENT TABLE ── */
+.post-table{width:100%;border-collapse:collapse;font-size:13px}
+.post-table th{text-align:left;padding:8px 12px;font-size:11px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;border-bottom:2px solid var(--line);white-space:nowrap}
+.post-table td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+.post-table tr:hover td{background:var(--paper-dim)}
+.post-table .post-num{font-weight:600;color:var(--teal)}
+.post-table .impr-bar{height:5px;background:var(--teal);border-radius:3px;opacity:.7;margin-top:3px;transition:width .3s}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600}
+.badge-green{background:#d1fae5;color:#065f46}
+.badge-amber{background:#fef3c7;color:#92400e}
+.badge-red{background:#fee2e2;color:#991b1b}
+.chart-wrap{position:relative;height:280px;margin-bottom:28px}
+
+/* ── MONTH TAG inline ── */
+.month-tag{display:inline-block;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:600;margin-left:6px;vertical-align:middle}
+.mt-12{background:#e0f2fe;color:#0369a1}
+.mt-3{background:#fef3c7;color:#92400e}
+
+/* ── PEOPLE TABS ── */
+.tabbar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.tabbar button{padding:5px 12px;border-radius:20px;border:1.5px solid var(--line);background:var(--card);font-size:12px;font-family:'Inter',sans-serif;cursor:pointer;transition:all .15s;color:#6b7280}
+.tabbar button.active{background:var(--teal);color:#fff;border-color:var(--teal)}
+.people-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.person-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.person-card .pname{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:2px;line-height:1.3}
+.person-card .prole{font-size:11px;color:#6b7280;line-height:1.3}
+
+/* ── COMMENT LOG ── */
+.comment-box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 24px}
+.comment-session{margin-bottom:18px}
+.comment-session:last-child{margin-bottom:0}
+.cs-date{font-size:11.5px;font-weight:600;color:var(--teal);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.cs-date::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal)}
+.cs-links{display:flex;flex-direction:column;gap:4px}
+.cs-links a{font-size:12px;color:#2563eb;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;max-width:100%}
+.cs-links a:hover{text-decoration:underline}
+.link-chip{display:inline-block;padding:2px 8px;background:var(--paper-dim);border-radius:10px;font-size:11px;color:#6b7280;margin-top:6px}
+
+/* ── NETWORK ── */
+.orgs-list{display:flex;flex-direction:column;gap:8px;margin-top:16px}
+.org-row{display:grid;grid-template-columns:140px 1fr 32px;align-items:center;gap:10px;font-size:13px}
+.org-bar-wrap{height:8px;background:var(--line);border-radius:4px}
+.org-bar{height:8px;background:var(--gold);border-radius:4px}
+.recurring-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:20px}
+.rec-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.rec-card .rname{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:3px}
+.rec-card .rrole{font-size:11px;color:#6b7280;margin-bottom:6px;line-height:1.3}
+.rec-card .rposts{font-size:11px;color:var(--teal)}
+
+/* ── FUNNEL ── */
+.funnel{display:flex;flex-direction:column;align-items:center;gap:0;width:100%;max-width:400px;margin:0 auto}
+.funnel-row{display:flex;flex-direction:column;align-items:center;width:100%}
+.funnel-block{background:var(--teal);color:#fff;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px 12px;transition:width .3s}
+.funnel-block .fval{font-family:'Fraunces',serif;font-size:22px;font-weight:500}
+.funnel-block .flbl{font-size:11px;opacity:.8;margin-top:2px}
+.funnel-arrow{font-size:18px;color:#9ca3af;padding:4px 0}
+
+/* ── STAT CARDS ── */
+.stat-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:24px}
+.stat-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px}
+.stat-card .sv{font-family:'Fraunces',serif;font-size:24px;font-weight:500;color:var(--ink)}
+.stat-card .sl{font-size:11px;color:#6b7280;margin-top:3px}
+
+@media(max-width:900px){
+  .shell{grid-template-columns:1fr}
+  .rail{position:relative;height:auto}
+  .kpi-strip{grid-template-columns:repeat(3,1fr)}
+  section{padding:28px 20px}
+  .hero{padding:28px 20px}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- RAIL -->
+<aside class="rail">
+  <div class="rail-logo">
+    <img src="data:image/png;base64,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" alt="GroNXT" onerror="this.style.display='none'">
+  </div>
+  <div class="rail-client">
+    <div class="name">Mayank Kankaria</div>
+    <div class="sub">3-Month LinkedIn Report · Posts 1–12</div>
+  </div>
+  <nav class="rail-nav">
+    <a href="#overview" class="active"><span class="rail-badge">①</span> Cumulative Overview</a>
+    <a href="#content"><span class="rail-badge">②</span> Content Performance</a>
+    <a href="#engagement"><span class="rail-badge">③</span> Who Engaged</a>
+    <a href="#comments"><span class="rail-badge">④</span> Comment Activity</a>
+    <a href="#network"><span class="rail-badge">⑤</span> Network & Reach</a>
+  </nav>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">GroNXT · LinkedIn Performance Report</div>
+  <div class="hero-name">Mayank Kankaria</div>
+  <div class="hero-period">3-Month Cumulative · July – September 2026 · Posts 1–12</div>
+  <div class="kpi-strip">
+    <div class="kpi">
+      <div class="val">23,133</div>
+      <div class="lbl">Total Impressions</div>
+      <button class="tip-btn" tabindex="-1">i</button>
+      <div class="tip">Sum of all 12 posts across 3 months. Post 4 drove 9,572 impressions alone.</div>
+    </div>
+    <div class="kpi">
+      <div class="val">418</div>
+      <div class="lbl">Total Likes</div>
+      <button class="tip-btn" tabindex="-1">i</button>
+      <div class="tip">316 likes across Posts 1–8 + 102 likes across Posts 9–12.</div>
+    </div>
+    <div class="kpi">
+      <div class="val">12</div>
+      <div class="lbl">Posts Published</div>
+      <button class="tip-btn" tabindex="-1">i</button>
+      <div class="tip">8 posts in Months 1 & 2, 4 posts in Month 3.</div>
+    </div>
+    <div class="kpi">
+      <div class="val">157</div>
+      <div class="lbl">Outbound Comments</div>
+      <button class="tip-btn" tabindex="-1">i</button>
+      <div class="tip">Strategic comments posted by GroNXT on behalf of Mayank across 17 sessions.</div>
+    </div>
+    <div class="kpi">
+      <div class="val">51+</div>
+      <div class="lbl">Senior Executives</div>
+      <button class="tip-btn" tabindex="-1">i</button>
+      <div class="tip">CFOs, VPs, Directors and Heads from Novartis, EY, Citi, Deloitte, PwC and more.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 1. OVERVIEW -->
+<section id="overview">
+  <div class="sec-label">Section 01</div>
+  <div class="sec-title">3-Month Cumulative Summary</div>
+  <div class="sec-sub">Aggregate performance across all 12 posts · July – September 2026</div>
+  <div class="stat-row">
+    <div class="stat-card"><div class="sv">23,133</div><div class="sl">Total Impressions</div></div>
+    <div class="stat-card"><div class="sv">418</div><div class="sl">Total Likes</div></div>
+    <div class="stat-card"><div class="sv">24</div><div class="sl">Total Comments (received)</div></div>
+    <div class="stat-card"><div class="sv">4</div><div class="sl">Total Reposts</div></div>
+    <div class="stat-card"><div class="sv">2.2%</div><div class="sl">Blended Eng. Rate</div></div>
+    <div class="stat-card"><div class="sv">12</div><div class="sl">Posts Published</div></div>
+  </div>
+  <div class="chart-wrap"><canvas id="chartOverview"></canvas></div>
+  <p style="font-size:12.5px;color:#6b7280;margin-top:8px">Post 4 (Month 1&2) was the breakout post with 9,572 impressions. Post 10 (Month 3) was the breakout post of Month 3 with 2,121 impressions. Post 5 had the highest engagement rate at 4.4%.</p>
+</section>
+
+<!-- 2. CONTENT PERFORMANCE -->
+<section id="content">
+  <div class="sec-label">Section 02</div>
+  <div class="sec-title">Content Performance · All 12 Posts</div>
+  <div class="sec-sub">Impressions, likes, comments, reposts and engagement rate for every post</div>
+  <table class="post-table">
+    <thead>
+      <tr>
+        <th>Post</th>
+        <th>Period</th>
+        <th>Impressions</th>
+        <th>Likes</th>
+        <th>Comments</th>
+        <th>Reposts</th>
+        <th>Eng. Rate</th>
+      </tr>
+    </thead>
+    <tbody id="postTableBody"></tbody>
+  </table>
+</section>
+
+<!-- 3. ENGAGEMENT -->
+<section id="engagement">
+  <div class="sec-label">Section 03</div>
+  <div class="sec-title">Who Engaged · All 12 Posts</div>
+  <div class="sec-sub">Senior professionals who engaged with each post — select a post to see</div>
+  <div class="tabbar" id="peopleTabs"></div>
+  <div class="people-grid" id="peopleGrid"></div>
+</section>
+
+<!-- 4. COMMENTS -->
+<section id="comments">
+  <div class="sec-label">Section 04</div>
+  <div class="sec-title">Outbound Comment Activity</div>
+  <div class="sec-sub">157 strategic comments posted across 17 sessions on behalf of Mayank Kankaria</div>
+  <div class="stat-row">
+    <div class="stat-card"><div class="sv">157</div><div class="sl">Total Comments Posted</div></div>
+    <div class="stat-card"><div class="sv">17</div><div class="sl">Comment Sessions</div></div>
+    <div class="stat-card"><div class="sv">~9.2</div><div class="sl">Avg Comments / Session</div></div>
+  </div>
+  <div class="comment-box" id="commentBox"></div>
+</section>
+
+<!-- 5. NETWORK -->
+<section id="network">
+  <div class="sec-label">Section 05</div>
+  <div class="sec-title">Network & Reach</div>
+  <div class="sec-sub">Top organisations reached, reach funnel, and recurring senior names across 3 months</div>
+
+  <h3 style="font-family:'Fraunces',serif;font-size:17px;font-weight:500;margin-bottom:4px">Top Organisations Reached</h3>
+  <p style="font-size:12.5px;color:#6b7280;margin-bottom:16px">Based on professionals who engaged across all 12 posts</p>
+  <div class="orgs-list">
+    <div class="org-row"><span>Novartis / Sandoz</span><div class="org-bar-wrap"><div class="org-bar" style="width:100%"></div></div><span>28</span></div>
+    <div class="org-row"><span>EY</span><div class="org-bar-wrap"><div class="org-bar" style="width:18%"></div></div><span>5</span></div>
+    <div class="org-row"><span>Citi</span><div class="org-bar-wrap"><div class="org-bar" style="width:11%"></div></div><span>3</span></div>
+    <div class="org-row"><span>Deloitte</span><div class="org-bar-wrap"><div class="org-bar" style="width:11%"></div></div><span>3</span></div>
+    <div class="org-row"><span>PwC</span><div class="org-bar-wrap"><div class="org-bar" style="width:7%"></div></div><span>2</span></div>
+    <div class="org-row"><span>Practo</span><div class="org-bar-wrap"><div class="org-bar" style="width:7%"></div></div><span>2</span></div>
+  </div>
+
+  <h3 style="font-family:'Fraunces',serif;font-size:17px;font-weight:500;margin:32px 0 4px">3-Month Reach Funnel</h3>
+  <p style="font-size:12.5px;color:#6b7280;margin-bottom:20px">Cumulative reach across all posts and months</p>
+  <div class="funnel">
+    <div class="funnel-row">
+      <div class="funnel-block" style="width:100%"><div class="fval">12</div><div class="flbl">Posts Published</div></div>
+      <div class="funnel-arrow">↓</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-block" style="width:88%"><div class="fval">23,133</div><div class="flbl">Total Impressions</div></div>
+      <div class="funnel-arrow">↓</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-block" style="width:76%"><div class="fval">446</div><div class="flbl">Total Engagements (likes + comments + reposts)</div></div>
+      <div class="funnel-arrow">↓</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-block" style="width:60%"><div class="fval">100+</div><div class="flbl">Unique Professionals Identified</div></div>
+      <div class="funnel-arrow">↓</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-block" style="width:42%" style="background:var(--gold)"><div class="fval">51+</div><div class="flbl">Senior Executives (CFO / VP / Director+)</div></div>
+    </div>
+  </div>
+
+  <h3 style="font-family:'Fraunces',serif;font-size:17px;font-weight:500;margin:32px 0 4px">Recurring Senior Engagers</h3>
+  <p style="font-size:12.5px;color:#6b7280;margin-bottom:16px">Names who engaged across multiple posts — highest-value connections</p>
+  <div class="recurring-grid">
+    <div class="rec-card"><div class="rname">Serena Lattuada</div><div class="rrole">CFO – APAC, Middle East & Africa, Novartis</div><div class="rposts">Posts 4, 5, 6</div></div>
+    <div class="rec-card"><div class="rname">Irfan Parkar</div><div class="rrole">CFO, Levant</div><div class="rposts">Posts 4, 5, 7, 8, 11</div></div>
+    <div class="rec-card"><div class="rname">Pramod Jain</div><div class="rrole">Vice President – ICRM, Citi</div><div class="rposts">Posts 1, 2, 3, 7, 10, 12</div></div>
+    <div class="rec-card"><div class="rname">Arjun Kuntay</div><div class="rrole">Group Head (Director), International Finance CoE</div><div class="rposts">Posts 2, 6, 7, 8, 10, 12</div></div>
+    <div class="rec-card"><div class="rname">Shailendra Kommajoshula</div><div class="rrole">Senior Finance Manager, Novartis</div><div class="rposts">Posts 1, 2, 5, 6, 10</div></div>
+    <div class="rec-card"><div class="rname">Vijay Raghavan Chandrasekar</div><div class="rrole">Head BPA – REFS FM Strategic Alliances, Novartis</div><div class="rposts">Posts 1, 4, 7, 8</div></div>
+    <div class="rec-card"><div class="rname">Ranjeet Bachhawat</div><div class="rrole">Associate Director – Corporate Tax, PwC</div><div class="rposts">Posts 2, 3, 5, 7</div></div>
+    <div class="rec-card"><div class="rname">Chandan Ghosh</div><div class="rrole">Head BPA, REFS, Switzerland</div><div class="rposts">Posts 2, 3, 6, 7</div></div>
+    <div class="rec-card"><div class="rname">Pradeep Injam</div><div class="rrole">FP&A Senior Manager, Novartis/Sandoz</div><div class="rposts">Posts 1, 2, 4</div></div>
+    <div class="rec-card"><div class="rname">Jagnoor Singh</div><div class="rrole">COO, Practo</div><div class="rposts">Posts 4, 8</div></div>
+    <div class="rec-card"><div class="rname">Pooja Mandhana</div><div class="rrole">FP&A & Transformation Leader</div><div class="rposts">Posts 1, 5, 10, 12</div></div>
+    <div class="rec-card"><div class="rname">Nidhi Jain</div><div class="rrole">Lead BPA, Novartis</div><div class="rposts">Posts 9, 10, 11, 12</div></div>
+    <div class="rec-card"><div class="rname">Rajeev Kumar</div><div class="rrole">Sr. Vice President, Spark PWM Private Ltd.</div><div class="rposts">Posts 1, 2, 3, 9, 10</div></div>
+    <div class="rec-card"><div class="rname">Sowjanya Chintakayala</div><div class="rrole">Senior Manager Finance, IMI BPA, Novartis</div><div class="rposts">Posts 7, 8, 9, 10</div></div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<script>
+/* ═══ POST DATA — ALL 12 ═══ */
+const allPosts = [
+  {num:1,  period:"M1&2", impr:1110,  likes:40,  cmts:0,  reposts:0, rate:3.6},
+  {num:2,  period:"M1&2", impr:1719,  likes:47,  cmts:6,  reposts:0, rate:3.1},
+  {num:3,  period:"M1&2", impr:650,   likes:25,  cmts:0,  reposts:0, rate:3.8},
+  {num:4,  period:"M1&2", impr:9572,  likes:106, cmts:10, reposts:1, rate:1.2},
+  {num:5,  period:"M1&2", impr:618,   likes:25,  cmts:2,  reposts:0, rate:4.4},
+  {num:6,  period:"M1&2", impr:760,   likes:20,  cmts:1,  reposts:0, rate:2.8},
+  {num:7,  period:"M1&2", impr:720,   likes:21,  cmts:1,  reposts:0, rate:3.1},
+  {num:8,  period:"M1&2", impr:4061,  likes:32,  cmts:1,  reposts:0, rate:0.8},
+  {num:9,  period:"M3",   impr:440,   likes:20,  cmts:0,  reposts:0, rate:4.55},
+  {num:10, period:"M3",   impr:2121,  likes:50,  cmts:3,  reposts:3, rate:2.64},
+  {num:11, period:"M3",   impr:423,   likes:12,  cmts:0,  reposts:0, rate:2.84},
+  {num:12, period:"M3",   impr:939,   likes:20,  cmts:0,  reposts:0, rate:2.13},
+];
+
+/* ═══ PEOPLE — ALL 12 POSTS ═══ */
+const allPeople = {
+  1: [["Pramod Jain","Vice President – ICRM, Citi"],["Rajeev Kumar","Sr. Vice President, Spark PWM"],["Yash Kothari","VP – EY Deal Advisory"],["CA Sanjeev Madan","Fractional CFO & Board Advisor"],["Vivek Maroti","MD, Munna Hardwares LLP"],["Raghunathan J Chettiar","Head, FRA Operations, Novartis"],["Hari Vardhan Kuna","Director, Enterprise Data Management"],["Sudhir Shenoy","Global Head of Data & Analytics Platforms"],["Mitra Vellanki","Head, Financial Controls & Compliance, NOCC Hyd"],["Vijay Raghavan Chandrasekar","Head BPA – REFS FM, Novartis"],["Ganpat Anchaliya","Site Head, Novartis Hyderabad"],["Abdhesh Kumar","Head, Digital FRA / Global Finance Transformation"],["Pooja Mandhana","FP&A & Transformation Leader"],["Ashwinder Singh Chowdhary","Founder, Ounsh Ventures"],["Smiti Murarka Bhagat","FP&A Senior Manager – IMI BPA, Novartis"],["Pradeep Injam","FP&A Senior Manager – North America BPA, Novartis"],["Shailendra Kommajoshula","Senior Finance Manager, Novartis"],["Ram Krishna","FP&A Global Sr Manager, DDIT"],["Prasanth Kumar Reddi","FP&A Manager, Novartis"]],
+  2: [["Ravi Kumar Sumit","CFO & Strategic Finance Leader"],["Jitendra Soni","CFO | Strategic Finance & Business Partnering"],["CA Sanjeev Madan","Fractional CFO & Board Advisor"],["Pramod Jain","Vice President – ICRM, Citi"],["Yash Kothari","VP – EY Deal Advisory"],["Rajeev Kumar","Sr. Vice President, Spark PWM"],["Arjun Kuntay","Group Head (Director), International Finance CoE"],["Parv Arora","Senior Director, Compliance, Publicis Re:Sources"],["Chandan Ghosh","Head BPA, REFS, Switzerland"],["Nitin Khandelwal","Senior Finance Leader"],["Pradeep Injam","FP&A Senior Manager – North America BPA, Novartis"],["Shailendra Kommajoshula","Senior Finance Manager, Novartis"],["Anja Driesmans","Culture, Resilience & Human-Centered Transformation"]],
+  3: [["Vinit Pugaliya","Consulting Managing Director, Deloitte Digital"],["CA Sanjeev Madan","Fractional CFO & Board Advisor"],["Pramod Jain","Vice President – ICRM, Citi"],["Rajeev Kumar","Sr. Vice President, Spark PWM"],["Sudhir Shenoy","Global Head of Data & Analytics Platforms"],["Chandan Ghosh","Head BPA, REFS, Switzerland"],["Swati Sawhney Malhan","Head FP&A Operations / Global Finance Lead"],["Hanoz Tarapore","Asia Pacific Supply Chain Leader"],["Srilalitha Gayatri Nelaturi","Senior Manager, BPA Project Ops"],["Ram Krishna","FP&A Global Senior Manager, DDIT"],["Ranjeet Bachhawat","Associate Director – Corporate & International Tax, PwC"]],
+  4: [["Serena Lattuada","CFO – APAC, Middle East & Africa, Novartis"],["Ravi Kumar Sumit","CFO & Strategic Finance Leader"],["Irfan Parkar","CFO, Levant"],["Jagnoor Singh","Chief Operating Officer, Practo"],["Nilesh K. Bhagat","Senior Vice President – Group Head, Tax"],["Vrinda Taneja","Director, P&O, Novartis"],["Paresh Phadke","Head Finance, Procurement & CFO, NOCC Hyderabad"],["Poorvi Pawar","Head BPA, Novartis Corporate Center, Hyderabad"],["Vijay Raghavan Chandrasekar","Head BPA – REFS FM, Novartis"],["Helmut Wasserbacher","Head of Digital Finance Operations & Innovation, Novartis"],["Nandan Singh","HR Leader (22+ years in pharma)"],["Grishma Patel","Global Strategic HR Leader / HR Business Partner"],["Smiti Murarka Bhagat","FP&A Senior Manager – IMI BPA, Novartis"],["Bharat Asava","Senior Manager, Corporate Finance, Novartis"],["Pradeep Injam","FP&A Senior Manager – North America BPA, Novartis/Sandoz"]],
+  5: [["Abhay Laijawala","Chief Investment Officer, India"],["Dick Mody","Founder & CEO, Ethical Advisers"],["Gangadharan Madhu","Head, Marketing & Sales, Novartis India"],["Aniruddha Chanda","Head, BPA Center of Excellence, Operations Finance"],["Swati Sawhney Malhan","Head FP&A Operations / Global Finance Lead"],["Serena Lattuada","CFO – APAC, Middle East & Africa, Novartis"],["Irfan Parkar","CFO, Levant"],["Hanoz Tarapore","Asia Pacific Supply Chain Leader"],["Ranjeet Bachhawat","Associate Director – Corporate & International Tax, PwC"],["Shailendra Kommajoshula","Senior Finance Manager, Novartis"],["Sadhana Bharti","Senior Manager, R2R GL Closing & Reporting, Novartis"],["Pooja Mandhana","FP&A & Transformation Leader"]],
+  6: [["Shilpa Joshi","Former CFO & Whole Time Director, Novartis India Ltd."],["Serena Lattuada","CFO – APAC, Middle East & Africa, Novartis"],["IN Murthy","Strategic CFO"],["Arjun Kuntay","Group Head (Director) – International Finance CoE"],["Yash Kothari","VP – EY Deal Advisory"],["Grishma Patel","Global Strategic HR Leader"],["Chandan Ghosh","Head – BPA, REFS, Switzerland"],["Shailendra Kommajoshula","Senior Finance Manager, Novartis"],["Sowjanya Chintakayala","Senior Manager Finance – MI BPA, Novartis"]],
+  7: [["Paresh Phadke","Head Finance, Procurement & CFO, NOCC Hyderabad"],["Pramod Jain","Vice President – ICRM, Citi"],["Irfan Parkar","CFO, Levant"],["Yash Kothari","VP – EY Deal Advisory"],["Arjun Kuntay","Group Head (Director) – International Finance CoE"],["Vijay Raghavan Chandrasekar","Head BPA – REFS FM, Novartis"],["Raghavendra Pathak","Head – FP&A / Strategic Finance Leader"],["Ranjeet Bachhawat","Associate Director – Corporate & International Tax, PwC"],["Subhankar Bose","Head – P2P Operations & T&E"],["Chandan Ghosh","Head – BPA, REFS, Switzerland"]],
+  8: [["Sriram Palepu","Founder – Storm Finance; Former CFO, Mercer Mettl"],["William Marablini","CFO"],["Jagnoor Singh","Chief Operating Officer, Practo"],["Arjun Kuntay","Group Head (Director) – International Finance CoE"],["Irfan Parkar","CFO, Levant"],["Vijay Raghavan Chandrasekar","Head BPA – REFS FM, Novartis"],["Aniruddha Chanda","Head – BPA Center of Excellence, Operations Finance"],["Hanoz Tarapore","Asia Pacific Supply Chain Leader"],["Puneet Narang","FP&A Leader (20+ years; ex-Novartis, HCL, Tata)"],["Sowjanya Chintakayala","Senior Manager Finance – MI BPA, Novartis"]],
+  9: [["Nidhi Jain","Lead BPA, Novartis"],["Lavina Jain","Audit Senior Manager, Deloitte & Touche LLP"],["Bhaskar Sharma","Process Improvement | Program Management & Business Analytics"],["Deepika Gandhi","Lead at Novartis | Vodafone | Star TV"],["Aashok Kumar Ranga","Global Head of Finance | FP&A | CFO Advisory | M&A"],["Mohan Achary Kamsali","Associate Director, FP&A, Sandoz | Ex-PwC"],["Vivek Maroti","Managing Director, Munna Hardwares LLP"],["Rajeev Kumar","Senior Vice President, Spark PWM"],["Srilalitha Gayatri Nelaturi","Senior Manager, BPA Project Operations"],["Raghavendra Pathak","Head – FP&A | Strategic Finance Leader"],["Sriram Palepu","Founder, Storm Finance | Ex-CFO, Mercer Mettl"],["Sowjanya Chintakayala","Senior Manager Finance, IMI BPA, Novartis"]],
+  10: [["Pooja Mandhana","FP&A & Transformation Leader | Scaling GCC Capabilities"],["Pramod Jain","Vice President – ICRM, Citi"],["Jay Savla","Senior Manager, Sandoz"],["Subhankar Bose","Head S2P – Operations and T&E"],["Ganpat Anchaliya","Site Head, Novartis Hyderabad"],["Nidhi Jain","Lead BPA, Novartis"],["Rajeev Kumar","Senior Vice President, Spark PWM"],["Abhay Laijawala","Chief Investment Officer, India"],["Shilpa Joshi","Board & Governance Professional | Former CFO, Listed Company"],["Arjun Kuntay","Group Head (Director) | International Finance CoE"],["Shailendra Kommajoshula","Senior Finance Manager, Novartis"],["Hanoz Tarapore","Asia Pacific Supply Chain Leader"],["Ravi Kumar Sumit","CFO & Strategic Finance Leader | Middle East & Africa"],["Grishma Patel","Global Strategic HR Leader | HR Business Partner"],["Aashok Kumar Ranga","Global Head of Finance | FP&A | CFO Advisory"],["Ram Krishna","FP&A Global Senior Manager, DDIT"],["Sowjanya Chintakayala","Senior Manager Finance, IMI BPA, Novartis"]],
+  11: [["Ravi Dakliya","Partner, Khandelwal Jain & Co. Chartered Accountants"],["Shreyansh Sethia","Partner, Gulgulia & Co."],["Nidhi Jain","Lead BPA, Novartis"],["Dick Mody","Founder & CEO, Ethical Advisers"],["Sai Kiran Peddapally","Senior Financial Analyst, Novartis | CA"],["Neha Sharma","Corporate Finance | FP&A | Workforce Planning"],["Hemanth Merapala","Amgen | Ex-Novartis"],["Irfan Parkar","CFO, Levant | INSEAD GEMBA '26"],["Aanandraj Panneerselvam","Enterprise Risk Management | Internal Audit | SOX Governance"]],
+  12: [["Vishnu Siddabathula","Senior Business Planning Analyst, Novartis"],["Maria Pirillo","Senior BPA Manager"],["Anand A Deshpande","Finance Leader | FP&A | Business Finance"],["Pramod Jain","Vice President – ICRM, Citi"],["Aashok Kumar Ranga","Global Head of Finance | FP&A | CFO Advisory"],["Aniruddha Chanda","Head – BPA Center of Excellence, Operations Finance"],["Lavina Jain","Audit Senior Manager, Deloitte & Touche LLP"],["Pooja Mandhana","FP&A & Transformation Leader"],["Arjun Kuntay","Group Head (Director) | International Finance CoE"],["Nidhi Jain","Lead BPA, Novartis"],["Hemanth Merapala","Amgen | Ex-Novartis"],["Raghavendra Pathak","Head – FP&A | Strategic Finance Leader"],["Yash Kothari","Director at EY | Deal Advisory"]]
+};
+
+/* ═══ COMMENT LOG ═══ */
+const commentLog = [
+  { date: "30 July 2026", links: [
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7487744448215339009/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287488459508441104385%2Curn%3Ali%3AugcPost%3A7487744448215339009%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7487823826085384192/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287488460041872859136%2Curn%3Ali%3Aactivity%3A7487823826085384192%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7488435725588418560/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287488460751628787712%2Curn%3Ali%3Aactivity%3A7488435725588418560%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7488276790394650625/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287488461294484873217%2Curn%3Ali%3AugcPost%3A7488276790394650625%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7488166423140204544/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287488462231391764480%2Curn%3Ali%3AugcPost%3A7488166423140204544%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7488006609814614018/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287488462814433677313%2Curn%3Ali%3AugcPost%3A7488006609814614018%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7486349341591449600/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287488464665065209856%2Curn%3Ali%3AugcPost%3A7486349341591449600%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7488079847970357248/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287488466030919405568%2Curn%3Ali%3AugcPost%3A7488079847970357248%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7486652984534175744/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287488466705636306944%2Curn%3Ali%3AugcPost%3A7486652984534175744%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7487386763674558464/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287488467986945712128%2Curn%3Ali%3Aactivity%3A7487386763674558464%29",
+  ]},
+  { date: "7 August 2026", links: [
+    "https://www.linkedin.com/feed/update/urn:li:activity:7491099286303219713/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287491328299797848064%2Curn%3Ali%3Aactivity%3A7491099286303219713%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7490229387351678977/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287491353770631577600%2Curn%3Ali%3Aactivity%3A7490229387351678977%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7490631155352911872/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287491354881753161730%2Curn%3Ali%3Aactivity%3A7490631155352911872%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7490719130128420864/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287491356624528531456%2Curn%3Ali%3Aactivity%3A7490719130128420864%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7490794691450470401/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287491357924124966912%2Curn%3Ali%3Aactivity%3A7490794691450470401%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7490801470116847617/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287491358797354090497%2Curn%3Ali%3AugcPost%3A7490801470116847617%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7491123755277127680/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287491361021211889664%2Curn%3Ali%3Aactivity%3A7491123755277127680%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7490404761922367490/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287491362640909500416%2Curn%3Ali%3Aactivity%3A7490404761922367490%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7491157159867535360/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287491365027833212931%2Curn%3Ali%3Aactivity%3A7491157159867535360%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7488227528218939393/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287491366454945185793%2Curn%3Ali%3Aactivity%3A7488227528218939393%29",
+  ]},
+  { date: "10 August 2026", links: [
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7482800930464288768/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287492437118015950848%2Curn%3Ali%3AugcPost%3A7482800930464288768%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7491697198653685760/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287492439663371149312%2Curn%3Ali%3Aactivity%3A7491697198653685760%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7490331038120857602/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287492441363821813760%2Curn%3Ali%3Aactivity%3A7490331038120857602%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7490680748077645824/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287492443354039873536%2Curn%3Ali%3AugcPost%3A7490680748077645824%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7491727696197185536/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287492448514958999552%2Curn%3Ali%3Aactivity%3A7491727696197185536%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7492242069428584448/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287492451331312590848%2Curn%3Ali%3AugcPost%3A7492242069428584448%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7490691471684247552/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287492453674007453696%2Curn%3Ali%3Aactivity%3A7490691471684247552%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7488081610404380672/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287492544827348402176%2Curn%3Ali%3AugcPost%3A7488081610404380672%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7492434813845389312/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287492546246021226496%2Curn%3Ali%3Aactivity%3A7492434813845389312%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7492340346786557952/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287492549852732538880%2Curn%3Ali%3Aactivity%3A7492340346786557952%29",
+  ]},
+  { date: "14 August 2026", links: [
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7493119850110873600/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287493993916438831104%2Curn%3Ali%3AugcPost%3A7493119850110873600%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7493848868787367936/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287493995846569451521%2Curn%3Ali%3Aactivity%3A7493848868787367936%29",
+  ]},
+  { date: "20 August 2026", links: [
+    "https://www.linkedin.com/feed/update/urn:li:activity:7495789487004749824/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287496096629628968960%2Curn%3Ali%3Aactivity%3A7495789487004749824%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7495680741775757312/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287496097342136270849%2Curn%3Ali%3Aactivity%3A7495680741775757312%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7495854585299947520/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287496098032267169792%2Curn%3Ali%3Aactivity%3A7495854585299947520%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7496030883599183872/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287496098672657711104%2Curn%3Ali%3AugcPost%3A7496030883599183872%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7494966049671565312/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287496099295256047617%2Curn%3Ali%3Aactivity%3A7494966049671565312%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7496058178586165248/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287496100014189068288%2Curn%3Ali%3Aactivity%3A7496058178586165248%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7494822119076450304/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287496100783332159489%2Curn%3Ali%3AugcPost%3A7494822119076450304%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7495679694193963008/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287496101675288555520%2Curn%3Ali%3Aactivity%3A7495679694193963008%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7495926850570031104/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287496102574329061377%2Curn%3Ali%3Aactivity%3A7495926850570031104%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7496052850494562304/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287496103345322029056%2Curn%3Ali%3AugcPost%3A7496052850494562304%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7495691034627166208/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287496104419126804481%2Curn%3Ali%3Aactivity%3A7495691034627166208%29",
+  ]},
+  { date: "21 August 2026", links: [
+    "https://www.linkedin.com/feed/update/urn:li:activity:7496053419787403264?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7496053419787403264%2C7496414298852769792%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287496414298852769792%2Curn%3Ali%3Aactivity%3A7496053419787403264%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7496078211513229312/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287496429498075283456%2Curn%3Ali%3Aactivity%3A7496078211513229312%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7495815637685153794/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287496430020329086977%2Curn%3Ali%3Aactivity%3A7495815637685153794%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7496211254139650048/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287496430535691436032%2Curn%3Ali%3Aactivity%3A7496211254139650048%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7496103388342923264/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287496431070414970880%2Curn%3Ali%3AugcPost%3A7496103388342923264%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7496046165617156097/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287496431806364372993%2Curn%3Ali%3Aactivity%3A7496046165617156097%29",
+  ]},
+  { date: "27 August 2026", links: [
+    "https://www.linkedin.com/feed/update/urn:li:activity:7497586037980917760/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287498607965453877249%2Curn%3Ali%3Aactivity%3A7497586037980917760%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7498428501960757248/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287498608830918967297%2Curn%3Ali%3Aactivity%3A7498428501960757248%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7481723396293218304/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287498609268275785728%2Curn%3Ali%3Aactivity%3A7481723396293218304%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7494989102304477184/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287498609684703145984%2Curn%3Ali%3Aactivity%3A7494989102304477184%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7498066629734420480/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287498610151696998400%2Curn%3Ali%3Aactivity%3A7498066629734420480%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7493879094149844992/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287498610664819748864%2Curn%3Ali%3Aactivity%3A7493879094149844992%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7498212641493110784/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287498611165628035072%2Curn%3Ali%3Aactivity%3A7498212641493110784%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7498087169014677504/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287498611715236921344%2Curn%3Ali%3Aactivity%3A7498087169014677504%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7498223750182658048/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287498612225771737089%2Curn%3Ali%3Aactivity%3A7498223750182658048%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7496399428187029504/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287498612935150391297%2Curn%3Ali%3AugcPost%3A7496399428187029504%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7498278987463483392/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287498613810937786368%2Curn%3Ali%3Aactivity%3A7498278987463483392%29",
+  ]},
+  { date: "29 August 2026", links: [
+    "https://www.linkedin.com/feed/update/urn:li:activity:7498618443248816128/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287499432128623902720%2Curn%3Ali%3Aactivity%3A7498618443248816128%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7498614205143523328/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287499432561711083520%2Curn%3Ali%3AugcPost%3A7498614205143523328%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7497334634154954752/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287499432907284062208%2Curn%3Ali%3AugcPost%3A7497334634154954752%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7497865344875708416/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287499433602242478080%2Curn%3Ali%3Aactivity%3A7497865344875708416%29",
+  ]},
+  { date: "1 Sep 2026", links: [
+    "https://www.linkedin.com/feed/update/urn:li:activity:7499035595776913408/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287500478610445754368%2Curn%3Ali%3Aactivity%3A7499035595776913408%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7500047366096609280/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287500479280309788672%2Curn%3Ali%3Aactivity%3A7500047366096609280%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7500039687714078720/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287500479973208678400%2Curn%3Ali%3Aactivity%3A7500039687714078720%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7499895230335348736/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287500480570741891072%2Curn%3Ali%3Aactivity%3A7499895230335348736%29",
+  ]},
+  { date: "2 Sep 2026", links: [
+    "https://www.linkedin.com/feed/update/urn:li:activity:7499850106410594304/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287500781684804513792%2Curn%3Ali%3Aactivity%3A7499850106410594304%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7500553052412706817/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287500782183616462848%2Curn%3Ali%3Aactivity%3A7500553052412706817%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7498703424834699265/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287500782830134853633%2Curn%3Ali%3Aactivity%3A7498703424834699265%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7499674405145460736/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287500783228283453440%2Curn%3Ali%3AugcPost%3A7499674405145460736%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7482800930464288768/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287500783739308978176%2Curn%3Ali%3AugcPost%3A7482800930464288768%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7500532121095159808/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287500784174480515072%2Curn%3Ali%3Aactivity%3A7500532121095159808%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7500413994898436096/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287500784820298465281%2Curn%3Ali%3Aactivity%3A7500413994898436096%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7500047329123536896/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287500785474756698112%2Curn%3Ali%3Aactivity%3A7500047329123536896%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7499337825579028480/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287500786167987060737%2Curn%3Ali%3Aactivity%3A7499337825579028480%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7498591514185506817/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287500786931325313024%2Curn%3Ali%3AugcPost%3A7498591514185506817%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7497140586781556736/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287500787461900431360%2Curn%3Ali%3Aactivity%3A7497140586781556736%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7500396813225611265/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287500787896501633024%2Curn%3Ali%3Aactivity%3A7500396813225611265%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7500079112036777984/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287500788540335775744%2Curn%3Ali%3AugcPost%3A7500079112036777984%29",
+  ]},
+  { date: "8 Sep 2026", links: [
+    "https://www.linkedin.com/feed/update/urn:li:activity:7501496830913060864/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287502951324263796736%2Curn%3Ali%3Aactivity%3A7501496830913060864%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7502568830511067136/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287502951843824558081%2Curn%3Ali%3Aactivity%3A7502568830511067136%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7501858750236880896/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287502952322382184448%2Curn%3Ali%3Aactivity%3A7501858750236880896%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7500926957077983232/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287502952895345098752%2Curn%3Ali%3AugcPost%3A7500926957077983232%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7502313802772869120/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287502953925676040193%2Curn%3Ali%3Aactivity%3A7502313802772869120%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7502700957353406464/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287502954643384197120%2Curn%3Ali%3Aactivity%3A7502700957353406464%29",
+    "https://www.linkedin.com/feed/update/urn:li:ugcPost:7502580609974902784/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287502955218616348675%2Curn%3Ali%3AugcPost%3A7502580609974902784%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7469742610853556225/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287502955985616060416%2Curn%3Ali%3Aactivity%3A7469742610853556225%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7501482095773589504/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287502956894462951425%2Curn%3Ali%3Aactivity%3A7501482095773589504%29",
+    "https://www.linkedin.com/feed/update/urn:li:activity:7501139362248671232/?dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287502957749643862017%2Curn%3Ali%3Aactivity%3A7501139362248671232%29",
+  ]},
+  { date: "14 Sep 2026", links: [
+    "https://lnkd.in/p/di9qZRht",
+    "https://lnkd.in/p/d8RYwVUg",
+    "https://lnkd.in/p/d4aUaWha",
+    "https://lnkd.in/p/dErZ2faR",
+    "https://lnkd.in/p/dmxQ2qjq",
+    "https://lnkd.in/p/drJkWPxa",
+    "https://lnkd.in/p/dczyX2sf",
+    "https://lnkd.in/p/dTu9eFS9",
+    "https://lnkd.in/p/dAknQTfe",
+    "https://lnkd.in/p/dexwvDrc",
+    "https://lnkd.in/p/dpri24Qx",
+  ]},
+  { date: "25 Sep 2026", links: [
+    "https://lnkd.in/p/dYnHjYTH",
+    "https://lnkd.in/p/dvJ2fcyX",
+    "https://lnkd.in/p/d5rxug6U",
+    "https://lnkd.in/p/dwGxj4dr",
+    "https://lnkd.in/p/dhXKKaM6",
+    "https://lnkd.in/p/dem2V8Ux",
+    "https://lnkd.in/p/djfChCUd",
+    "https://lnkd.in/p/dwAndYAZ",
+    "https://lnkd.in/p/dy685ymZ",
+    "https://lnkd.in/p/ddMZVdQ2",
+    "https://lnkd.in/p/dXmGvKXs",
+    "https://lnkd.in/p/d39vD-9d",
+  ]},
+  { date: "29 Sep 2026", links: [
+    "https://lnkd.in/p/dKj5h5wm",
+    "https://lnkd.in/p/ds3fkpNk",
+    "https://lnkd.in/p/dkkDTsWQ",
+    "https://lnkd.in/p/dUPN7U3V",
+    "https://lnkd.in/p/d-z89Uys",
+    "https://lnkd.in/p/da5epBij",
+    "https://lnkd.in/p/dGb3B4KX",
+    "https://lnkd.in/p/drmXnpxD",
+    "https://lnkd.in/p/dPFHKtKt",
+    "https://lnkd.in/p/dXERGN7w",
+    "https://lnkd.in/p/dKXSJMST",
+    "https://lnkd.in/p/dGqUDskR",
+  ]},
+  { date: "7 Oct 2026", links: [
+    "https://lnkd.in/p/eB_enAqk",
+    "https://lnkd.in/p/eBAim85Z",
+    "https://lnkd.in/p/e8gdC7vX",
+    "https://lnkd.in/p/eXcacXTp",
+    "https://lnkd.in/p/eiv3HDnh",
+    "https://lnkd.in/p/eeBfXDQz",
+    "https://lnkd.in/p/e2m8yuVF",
+    "https://lnkd.in/p/eFE2f-Ce",
+    "https://lnkd.in/p/edMhJNzh",
+    "https://lnkd.in/p/e3YxWXdM",
+  ]},
+  { date: "14 Oct 2026", links: [
+    "https://lnkd.in/p/dJ5YRste",
+    "https://lnkd.in/p/dyZnVBAm",
+    "https://lnkd.in/p/dvWGH4sY",
+    "https://lnkd.in/p/dYeaB8A2",
+    "https://lnkd.in/p/dqEXRRRS",
+    "https://lnkd.in/p/d3KcPtVk",
+    "https://lnkd.in/p/dpcwp6zm",
+    "https://lnkd.in/p/dbgqrJQB",
+    "https://lnkd.in/p/dSKbeaAS",
+    "https://lnkd.in/p/dy7yPHGU",
+    "https://lnkd.in/p/d64sKuCh",
+  ]},
+  { date: "24 Oct 2026", links: [
+    "https://lnkd.in/p/dhTuGj2V",
+    "https://lnkd.in/p/dqkXhnx2",
+    "https://lnkd.in/p/dwBkhby2",
+    "https://lnkd.in/p/dYEYTbce",
+    "https://lnkd.in/p/dDqYfBHs",
+    "https://lnkd.in/p/dBgGnprt",
+    "https://lnkd.in/p/dnX3G5XY",
+    "https://lnkd.in/p/dHXFhUj8",
+    "https://lnkd.in/p/dntJx-c8",
+    "https://lnkd.in/p/durppYjS",
+  ]},
+];
+
+/* ═══ BUILD CONTENT TABLE ═══ */
+const maxImpr = Math.max(...allPosts.map(p=>p.impr));
+const tbody = document.getElementById('postTableBody');
+allPosts.forEach(p=>{
+  const barW = Math.round((p.impr/maxImpr)*120);
+  const rateBadge = p.rate>=4 ? 'badge-green' : p.rate>=2.5 ? 'badge-amber' : 'badge-red';
+  const tag = p.period==='M1&2' ? '<span class="month-tag mt-12">M 1&2</span>' : '<span class="month-tag mt-3">M 3</span>';
+  tbody.innerHTML += `<tr>
+    <td class="post-num">Post ${p.num}</td>
+    <td>${tag}</td>
+    <td><div style="font-weight:600">${p.impr.toLocaleString()}</div><div class="impr-bar" style="width:${barW}px"></div></td>
+    <td>${p.likes}</td>
+    <td>${p.cmts}</td>
+    <td>${p.reposts}</td>
+    <td><span class="badge ${rateBadge}">${p.rate}%</span></td>
+  </tr>`;
+});
+
+/* ═══ BUILD PEOPLE TABS — ALL 12 ═══ */
+const tabbar = document.getElementById('peopleTabs');
+const grid = document.getElementById('peopleGrid');
+let activePost = 1;
+function renderPeople(pNum){
+  activePost = pNum;
+  grid.innerHTML='';
+  const list = allPeople[pNum]||[];
+  list.forEach(p=>{
+    const name = Array.isArray(p) ? p[0] : p.name;
+    const role = Array.isArray(p) ? p[1] : (p.role||p.title||'');
+    grid.innerHTML += `<div class="person-card"><div class="pname">${name}</div><div class="prole">${role}</div></div>`;
+  });
+}
+for(let i=1;i<=12;i++){
+  const btn = document.createElement('button');
+  const period = i<=8?'M1&2':'M3';
+  const tagCls = i<=8?'mt-12':'mt-3';
+  btn.innerHTML = `Post ${i} <span class="month-tag ${tagCls}" style="font-size:9px">${period}</span>`;
+  btn.dataset.post = i;
+  if(i===1) btn.classList.add('active');
+  btn.addEventListener('click',()=>{
+    tabbar.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderPeople(i);
+  });
+  tabbar.appendChild(btn);
+}
+renderPeople(1);
+
+/* ═══ BUILD COMMENT BOX ═══ */
+const box = document.getElementById('commentBox');
+const SHOW = 3;
+commentLog.forEach((session,si)=>{
+  const shown = session.links.slice(0,SHOW);
+  const extra = session.links.length - SHOW;
+  let linksHTML = shown.map(l=>`<a href="${l}" target="_blank" rel="noopener">linkedin.com/feed/update/…${l.slice(-20)}</a>`).join('');
+  if(extra>0) linksHTML += `<span class="link-chip">+${extra} more</span>`;
+  box.innerHTML += `<div class="comment-session"><div class="cs-date">Session ${si+1} · ${session.date} · ${session.links.length} comments</div><div class="cs-links">${linksHTML}</div></div>`;
+});
+
+/* ═══ OVERVIEW CHART ═══ */
+function loadChart(){
+  if(typeof Chart==='undefined'){
+    const s=document.createElement('script');
+    s.src='https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js';
+    s.onload=buildCharts;
+    document.head.appendChild(s);
+  } else buildCharts();
+}
+function buildCharts(){
+  const labels = allPosts.map(p=>`P${p.num}`);
+  const imprData = allPosts.map(p=>p.impr);
+  const rateData = allPosts.map(p=>p.rate);
+  const bgColors = allPosts.map(p=>p.period==='M1&2'?'rgba(31,111,99,0.7)':'rgba(184,137,47,0.7)');
+  const ctx = document.getElementById('chartOverview').getContext('2d');
+  new Chart(ctx,{
+    data:{
+      labels,
+      datasets:[
+        {type:'bar',label:'Impressions',data:imprData,backgroundColor:bgColors,yAxisID:'y',borderRadius:4},
+        {type:'line',label:'Eng. Rate %',data:rateData,borderColor:'#A85239',backgroundColor:'rgba(168,82,57,.1)',tension:.4,yAxisID:'y2',pointRadius:4,pointBackgroundColor:'#A85239'}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'top',labels:{font:{size:11},padding:14}},tooltip:{mode:'index',intersect:false}},
+      scales:{
+        y:{beginAtZero:true,position:'left',grid:{color:'rgba(0,0,0,.06)'},ticks:{font:{size:11}}},
+        y2:{beginAtZero:true,position:'right',grid:{drawOnChartArea:false},ticks:{font:{size:11},callback:v=>v+'%'}}
+      }
+    }
+  });
+}
+loadChart();
+
+/* ═══ SCROLL SPY ═══ */
+const sections = document.querySelectorAll('section[id], .hero');
+const navLinks = document.querySelectorAll('.rail-nav a');
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navLinks.forEach(a=>a.classList.remove('active'));
+      const link = document.querySelector(`.rail-nav a[href="#${e.target.id}"]`);
+      if(link) link.classList.add('active');
+    }
+  });
+},{threshold:.25});
+sections.forEach(s=>observer.observe(s));
+</script>
+</body>
+</html>
